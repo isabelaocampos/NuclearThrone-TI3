@@ -1,7 +1,6 @@
 package com.example.nuclearthrone.control;
-
 import com.example.nuclearthrone.screens.BaseScreen;
-import com.example.nuclearthrone.screens.ScreeA;
+import com.example.nuclearthrone.screens.ScreenA;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,7 +25,7 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         isRunning = true;
         screens = new ArrayList<>();
-        screens.add(new ScreeA(this.canvas));
+        screens.add(new ScreenA(this.canvas));
         canvas.setFocusTraversable(true);
 
         new Thread( () -> {
