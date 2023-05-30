@@ -24,8 +24,7 @@ public class ScreenA extends BaseScreen{
         enemies = new ArrayList<>();
         bullets = new ArrayList<>();
 
-        Enemy enemy = new Enemy(canvas, new Vector(300, 0));
-        enemy.start();
+        Enemy enemy = new Enemy(canvas, new Vector(300, 0), new Vector(0,0));
         enemies.add(enemy);
     }
 
@@ -35,10 +34,12 @@ public class ScreenA extends BaseScreen{
         graphicsContext.fillRect(0,0, canvas.getWidth(), canvas.getHeight());
 
 //        COMO AÚN NO HAY RECURSOS GRAFICOS AÚN NO SE PUEDE PINTAR EL PLAYER
-//        player.paint();
+        player.paint();
 
         for (Enemy b: enemies) {
             b.paint();
+            b.followPlayer(player.getPosition());
+
         }
 
         for (int i = 0; i< bullets.size(); i++){
@@ -86,7 +87,7 @@ public class ScreenA extends BaseScreen{
 
     @Override
     public void onMousePressed(MouseEvent event) {
-        double diffX = event.getX() - player.getPosition().getX();
+        double diffX = event.getX() - player.getPosition().getX(); //destino - origen
         double diffY = event.getY() - player.getPosition().getY();
 
         Vector diff = new Vector(diffX, diffY);

@@ -3,6 +3,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 public class Player {
 
@@ -36,14 +38,13 @@ public class Player {
 
         this.position = new Vector(100, 100);
 
-        this.posX = 100;
-        this.posY = 100;
-
         idleImages = new ArrayList<>();
         runImages = new ArrayList<>();
         attackImages = new ArrayList<>();
 
-//        FALTA AGREGAR LOS RECURSOS GRAFICOS AL PROYECTO
+
+
+    //        FALTA AGREGAR LOS RECURSOS GRAFICOS AL PROYECTO
 //
 //        for(int i = 0; i <= 3; i++){
 //            Image image = new Image(getClass().getResourceAsStream("/animations/hero/idle/adventurer-idle-2-0"+i+".png"));
@@ -63,7 +64,9 @@ public class Player {
 
     public void paint(){
         onMove();
-        if (state == 0){
+        graphicsContext.setFill(Color.ALICEBLUE);
+        graphicsContext.fillRect(position.getX(), position.getY(), 50, 50);
+        /*if (state == 0){
             graphicsContext.drawImage(idleImages.get(frame%3), position.getX(), position.getY());
             frame++;
         }
@@ -74,7 +77,7 @@ public class Player {
         else if (state == 2) {
             graphicsContext.drawImage(attackImages.get(frame%4), position.getX(), position.getY());
             frame++;
-        }
+        }*/
     }
 
     public void onKeyPressed(KeyEvent event){
