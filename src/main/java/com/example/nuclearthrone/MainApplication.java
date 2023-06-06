@@ -32,8 +32,8 @@ public class MainApplication extends Application {
         return new File(Objects.requireNonNull(MainApplication.class.getResource(fileName)).getPath());
     }
 
-    public static Image getImage(String path) {
-        return new Image(getFile(path).getPath());
+    public static Image getImage(String fileName) {
+        return new Image(getFile(fileName).getPath());
     }
     public static void main(String[] args) {
         launch();
