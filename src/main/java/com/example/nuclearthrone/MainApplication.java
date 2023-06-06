@@ -5,9 +5,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class MainApplication extends Application {
     @Override
@@ -25,6 +28,13 @@ public class MainApplication extends Application {
         stage.show();
     }
 
+    public static File getFile(String fileName) {
+        return new File(Objects.requireNonNull(MainApplication.class.getResource(fileName)).getPath());
+    }
+
+    public static Image getImage(String path) {
+        return new Image(getFile(path).getPath());
+    }
     public static void main(String[] args) {
         launch();
     }

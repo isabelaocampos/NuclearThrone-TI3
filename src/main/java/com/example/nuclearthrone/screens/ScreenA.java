@@ -35,7 +35,7 @@ public class ScreenA extends BaseScreen{
         graphicsContext.fillRect(0,0, canvas.getWidth(), canvas.getHeight());
 
 //        COMO AÚN NO HAY RECURSOS GRAFICOS AÚN NO SE PUEDE PINTAR EL PLAYER
-//        player.paint();
+        player.paint();
 
         for (Enemy b: enemies) {
             b.paint();

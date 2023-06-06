@@ -1,8 +1,10 @@
 package com.example.nuclearthrone.model;
+import com.example.nuclearthrone.MainApplication;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
+
 import java.util.ArrayList;
 public class Player {
 
@@ -43,22 +45,22 @@ public class Player {
         runImages = new ArrayList<>();
         attackImages = new ArrayList<>();
 
-//        FALTA AGREGAR LOS RECURSOS GRAFICOS AL PROYECTO
-//
-//        for(int i = 0; i <= 3; i++){
-//            Image image = new Image(getClass().getResourceAsStream("/animations/hero/idle/adventurer-idle-2-0"+i+".png"));
-//            idleImages.add(image);
-//        }
-//
-//        for(int i = 0; i <= 5; i++){
-//            Image image = new Image(getClass().getResourceAsStream("/animations/hero/run/adventurer-run-0"+i+".png"));
-//            runImages.add(image);
-//        }
-//
-//        for(int i = 0; i <= 4; i++){
-//            Image image = new Image(getClass().getResourceAsStream("/animations/hero/attack/adventurer-attack1-0"+i+".png"));
-//            attackImages.add(image);
-//        }
+
+        for(int i = 1; i <= 3; i++){
+            Image image = MainApplication.getImage("animations/hero/idle/idle_0"+i+".png");
+            idleImages.add(image);
+        }
+
+        for(int i = 1; i <= 5; i++){
+            Image image = MainApplication.getImage("animations/hero/run/run_0" +i+".png");
+            runImages.add(image);
+        }
+
+        for(int i = 1; i <= 4; i++){
+            Image image = MainApplication.getImage("animations/hero/shoot/shoot_0"+i+".png");
+            attackImages.add(image);
+        }
+
     }
 
     public void paint(){
