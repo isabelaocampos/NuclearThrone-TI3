@@ -23,5 +23,5 @@ public abstract class BaseScreen {
 
     public abstract void onMousePressed(MouseEvent event);
 
-
+    public abstract void onMouseMove(MouseEvent event);
 }

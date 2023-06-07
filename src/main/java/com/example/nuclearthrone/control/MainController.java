@@ -33,10 +33,8 @@ public class MainController implements Initializable {
                 Platform.runLater( () -> {
                     paint();
                 });
-                // esta línea va acá ...
-                pause(50);
+                pause(100);
             }
-            // estaba acá ....
         }).start();
 
         initEvents();
@@ -62,6 +60,9 @@ public class MainController implements Initializable {
 
         canvas.setOnMousePressed(event -> {
             screens.get(SCREEN).onMousePressed(event);
+        });
+        canvas.setOnMouseMoved(event -> {
+            screens.get(SCREEN).onMouseMove(event);
         });
     }
 
