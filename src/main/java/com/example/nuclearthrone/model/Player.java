@@ -1,9 +1,12 @@
 package com.example.nuclearthrone.model;
+import com.example.nuclearthrone.MainApplication;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
+
 import javafx.scene.paint.Color;
+
 
 import java.util.ArrayList;
 public class Player {
@@ -31,6 +34,10 @@ public class Player {
     private boolean rightPressed;
     private boolean isAttacking;
 
+    //
+    private boolean isFacingRight = true;
+    private boolean isMoving;
+
     public Player(Canvas canvas){
         this.state = 0;
         this.canvas = canvas;
@@ -42,43 +49,52 @@ public class Player {
         runImages = new ArrayList<>();
         attackImages = new ArrayList<>();
 
+        for(int i = 1; i <= 3; i++){
+            Image image = MainApplication.getImage("animations/hero/idle/idle_0"+i+".png");
+            idleImages.add(image);
+        }
 
+        for(int i = 1; i <= 5; i++){
+            Image image = MainApplication.getImage("animations/hero/run/run_0" +i+".png");
+            runImages.add(image);
+        }
 
-    //        FALTA AGREGAR LOS RECURSOS GRAFICOS AL PROYECTO
-//
-//        for(int i = 0; i <= 3; i++){
-//            Image image = new Image(getClass().getResourceAsStream("/animations/hero/idle/adventurer-idle-2-0"+i+".png"));
-//            idleImages.add(image);
-//        }
-//
-//        for(int i = 0; i <= 5; i++){
-//            Image image = new Image(getClass().getResourceAsStream("/animations/hero/run/adventurer-run-0"+i+".png"));
-//            runImages.add(image);
-//        }
-//
-//        for(int i = 0; i <= 4; i++){
-//            Image image = new Image(getClass().getResourceAsStream("/animations/hero/attack/adventurer-attack1-0"+i+".png"));
-//            attackImages.add(image);
-//        }
+        for(int i = 1; i <= 4; i++){
+            Image image = MainApplication.getImage("animations/hero/shoot/shoot_0"+i+".png");
+            attackImages.add(image);
+        }
+
     }
 
-    public void paint(){
+
+    public void paint() {
         onMove();
-        graphicsContext.setFill(Color.ALICEBLUE);
-        graphicsContext.fillRect(position.getX(), position.getY(), 50, 50);
-        /*if (state == 0){
-            graphicsContext.drawImage(idleImages.get(frame%3), position.getX(), position.getY());
-            frame++;
+
+        if (state == 0) {
+            double width = isFacingRight ? 50 : -50;
+            double xOffset = isFacingRight ? -25 : 25;
+
+            graphicsContext.drawImage(idleImages.get(frame % 3), position.getX() + xOffset, position.getY() - 25, width, 50);
+        } else if (state == 1) {
+            double width = isFacingRight ? 60 : -60;
+            double xOffset = isFacingRight ? -30 : 30;
+
+            graphicsContext.drawImage(runImages.get(frame % 5), position.getX() + xOffset, position.getY() - 25, width, 50);
+        } else if (state == 2) {
+            double width = isFacingRight ? 70 : -70;
+            double xOffset = isFacingRight ? -35 : 35;
+
+            graphicsContext.drawImage(attackImages.get(frame % 4), position.getX() + xOffset, position.getY() - 25, width, 50);
         }
-        else if(state == 1) {
-            graphicsContext.drawImage(runImages.get(frame%5), position.getX(), position.getY());
-            frame++;
-        }
-        else if (state == 2) {
-            graphicsContext.drawImage(attackImages.get(frame%4), position.getX(), position.getY());
-            frame++;
-        }*/
+
+        frame++;
     }
+
+
+
+
+
+
 
     public void onKeyPressed(KeyEvent event){
         switch (event.getCode()){
@@ -137,4 +153,13 @@ public class Player {
     public Vector getPosition() {
         return position;
     }
+
+    public boolean isFacingRight() {
+        return isFacingRight;
+    }
+
+    public void setFacingRight(boolean facingRight) {
+        isFacingRight = facingRight;
+    }
+
 }

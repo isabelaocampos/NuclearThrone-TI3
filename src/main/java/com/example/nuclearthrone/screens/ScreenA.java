@@ -51,7 +51,6 @@ public class ScreenA extends BaseScreen{
         graphicsContext.setFill(Color.BLACK);
         graphicsContext.fillRect(0,0, canvas.getWidth(), canvas.getHeight());
 
-//        COMO AÚN NO HAY RECURSOS GRAFICOS AÚN NO SE PUEDE PINTAR EL PLAYER
         player.paint();
 
         //Paint enemies
@@ -120,11 +119,12 @@ public class ScreenA extends BaseScreen{
 
     @Override
     public void onMousePressed(MouseEvent event) {
+
         double diffX = event.getX() - player.getPosition().getX(); //destino - origen
         double diffY = event.getY() - player.getPosition().getY();
         Vector diff = new Vector(diffX, diffY);
         diff.normalize();
-        diff.setSpeed(4);
+        diff.setSpeed(7);
 
         bullets.add(
                 new Bullet(canvas, new Vector( player.getPosition().getX(), player.getPosition().getY()), diff)
@@ -134,11 +134,11 @@ public class ScreenA extends BaseScreen{
 
     //Cambiar cursor por una imagen - MODIFICAR
     @Override
-    public void onMouseMove(MouseEvent event){
-        Scene scene = canvas.getParent().getScene();
-        scene.setCursor(Cursor.NONE);
-        graphicsContext.setFill(Color.RED);
-        graphicsContext.fillRect(event.getX(),event.getY(),20,20);
+    public void onMouseMove(MouseEvent e){
+        double relativePosition = e.getX()-player.getPosition().getX();
+        player.setFacingRight(
+                relativePosition > 0
+        );
     }
 
     //Enemies shoot to player

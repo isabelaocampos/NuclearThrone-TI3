@@ -1,7 +1,9 @@
 package com.example.nuclearthrone.model;
 
+import com.example.nuclearthrone.MainApplication;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class Bullet {
@@ -16,6 +18,8 @@ public class Bullet {
     private int size;
     private int speed;
 
+    private Image bulletImage;
+
     public Bullet(Canvas canvas, Vector position, Vector direction) {
         this.canvas = canvas;
         this.graphicsContext = canvas.getGraphicsContext2D();
@@ -23,15 +27,15 @@ public class Bullet {
         this.direction =  direction;
         this.size = 10;
         this.speed = 10;
+        this.bulletImage = MainApplication.getImage("animations/hero/Objects/bulletSphereplanet.png");
     }
 
-    public void paint(){
-        graphicsContext.setFill(Color.YELLOW);
-        graphicsContext.fillOval(position.getX(), position.getY(), size, size);
+    public void paint() {
+        graphicsContext.drawImage(bulletImage, position.getX()-5, position.getY()-5, 10, 10);
         position.setX(position.getX() + direction.getX());
         position.setY(position.getY() + direction.getY());
-
     }
+
 
     public double getPositionX() {
         return position.getX();
