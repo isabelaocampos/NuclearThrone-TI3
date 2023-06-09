@@ -1,5 +1,6 @@
 package com.example.nuclearthrone.screens;
 
+import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
@@ -7,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 
 public abstract class BaseScreen {
 
+    @FXML
     protected Canvas canvas;
     protected GraphicsContext graphicsContext;
 
