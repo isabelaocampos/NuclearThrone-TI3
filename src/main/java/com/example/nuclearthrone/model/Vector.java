@@ -11,10 +11,10 @@ public class Vector {
     }
     public void normalize(){
         double magnitude = Math.sqrt(x * x + y * y);
-        if (magnitude != 0) {
-            x /= magnitude;
-            y /= magnitude;
-        }
+        double angle = Math.atan2(y,x);
+        x = 1*Math.cos(angle);
+        y = 1*Math.sin(angle);
+
     }
 
     public void setSpeed(int speed){

@@ -27,11 +27,11 @@ public class Bullet {
         this.direction =  direction;
         this.size = 10;
         this.speed = 10;
-        this.bulletImage = MainApplication.getImage("animations/hero/Objects/Bullet_000.png");
+        this.bulletImage = MainApplication.getImage("animations/hero/Objects/bulletSphereplanet.png");
     }
 
     public void paint() {
-        graphicsContext.drawImage(bulletImage, position.getX(), position.getY(), size, size);
+        graphicsContext.drawImage(bulletImage, position.getX()-5, position.getY()-5, 10, 10);
         position.setX(position.getX() + direction.getX());
         position.setY(position.getY() + direction.getY());
     }

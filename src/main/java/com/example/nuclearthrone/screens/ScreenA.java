@@ -4,11 +4,14 @@ import com.example.nuclearthrone.model.Player;
 import com.example.nuclearthrone.model.Enemy;
 import com.example.nuclearthrone.model.Bullet;
 import com.example.nuclearthrone.model.Vector;
+import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
+import java.lang.Math;
+import javafx.scene.Scene;
 
 public class ScreenA extends BaseScreen{
 
@@ -18,15 +21,29 @@ public class ScreenA extends BaseScreen{
 
     private ArrayList<Bullet> bullets;
 
+    private ArrayList<Bullet> bulletsEnemy;
+
     public ScreenA(Canvas canvas) {
         super(canvas);
         player = new Player(canvas);
         enemies = new ArrayList<>();
         bullets = new ArrayList<>();
+        bulletsEnemy = new ArrayList<>();
+        //Create enemies
+        int upperX = (int) canvas.getWidth()-50;
+        int lowerX = 200;
+        int rangeX = (upperX - lowerX) + 1;
+        int upperY = (int) canvas.getHeight()-50;
+        int lowerY = 200;
+        int rangeY = (upperY - lowerY) + 1;
 
-        Enemy enemy = new Enemy(canvas, new Vector(300, 0));
-        enemy.start();
-        enemies.add(enemy);
+        for (int i=0; i<4; i++){
+            double rX = (Math.random() * rangeX) + lowerX;
+            double rY = (Math.random() * rangeY) + lowerY;
+
+            Enemy enemy = new Enemy(canvas, new Vector(rX, rY), new Vector(0,0));
+            enemies.add(enemy);
+        }
     }
 
     @Override
@@ -34,13 +51,17 @@ public class ScreenA extends BaseScreen{
         graphicsContext.setFill(Color.BLACK);
         graphicsContext.fillRect(0,0, canvas.getWidth(), canvas.getHeight());
 
-//        COMO AÚN NO HAY RECURSOS GRAFICOS AÚN NO SE PUEDE PINTAR EL PLAYER
         player.paint();
 
-        for (Enemy b: enemies) {
-            b.paint();
+        //Paint enemies
+        for (int i=0; i<enemies.size(); i++){
+            enemies.get(i).paint();
+            enemies.get(i).followPlayer(player.getPosition());
+            enemies.get(i).attackPlayer(player.getPosition());
+            enemyShoot(enemies.get(i).getAttacking(), i);
         }
 
+        //Paint bullets of Player
         for (int i = 0; i< bullets.size(); i++){
             bullets.get(i).paint();
 
@@ -50,6 +71,17 @@ public class ScreenA extends BaseScreen{
             }
         }
 
+        //Paint bullets of Enemy
+        for (int i = 0; i< bulletsEnemy.size(); i++){
+            bulletsEnemy.get(i).paint();
+
+            if(bulletsEnemy.get(i).getPositionX() > canvas.getWidth()){
+                bulletsEnemy.remove(i);
+                i--;
+            }
+        }
+
+        //Delete enemy
         for (int i = 0; i< enemies.size(); i++){
             for (int j = 0; j < bullets.size(); j++){
 
@@ -58,17 +90,18 @@ public class ScreenA extends BaseScreen{
 
                 double distance = Math.sqrt(
                         Math.pow(actualEnemy.getPosition().getX() - actualBullet.getPositionX(), 2) +
-                                Math.pow(actualEnemy.getPosition().getY() - actualBullet.getPositionY(), 2)
-                );
+                                Math.pow(actualEnemy.getPosition().getY() - actualBullet.getPositionY(), 2));
 
                 if (distance <= 10){
-                    Enemy deletedEnemy = enemies.remove(i);
-
-                    deletedEnemy.setAlive(false);
+                    actualEnemy.setDamage(actualEnemy.getDamage()+1);
                     bullets.remove(j);
-                    return;
+
+                    if (actualEnemy.getDamage() == 3){
+                        Enemy deletedEnemy = enemies.remove(i);
+                        deletedEnemy.setAlive(false);
+                        return;
+                    }
                 }
-                System.out.println(distance);
             }
         }
 
@@ -86,18 +119,40 @@ public class ScreenA extends BaseScreen{
 
     @Override
     public void onMousePressed(MouseEvent event) {
-        double diffX = event.getX() - player.getPosition().getX();
+
+        double diffX = event.getX() - player.getPosition().getX(); //destino - origen
         double diffY = event.getY() - player.getPosition().getY();
-
         Vector diff = new Vector(diffX, diffY);
-
         diff.normalize();
-        diff.setSpeed(4);
+        diff.setSpeed(7);
 
         bullets.add(
                 new Bullet(canvas, new Vector( player.getPosition().getX(), player.getPosition().getY()), diff)
         );
 
+    }
 
+    //Cambiar cursor por una imagen - MODIFICAR
+    @Override
+    public void onMouseMove(MouseEvent e){
+        double relativePosition = e.getX()-player.getPosition().getX();
+        player.setFacingRight(
+                relativePosition > 0
+        );
+    }
+
+    //Enemies shoot to player
+    public void enemyShoot(boolean isAttacking, int index){
+        if (isAttacking){
+            double diffXE = player.getPosition().getX() - enemies.get(index).getPosition().getX();
+            double diffYE = player.getPosition().getY() - enemies.get(index).getPosition().getY();
+            Vector diffE = new Vector(diffXE, diffYE);
+            diffE.normalize();
+            diffE.setSpeed(4);
+
+            bulletsEnemy.add((new Bullet(canvas,
+                    new Vector(enemies.get(index).getPosition().getX(), enemies.get(index).getPosition().getY()),
+                    diffE)));
+        }
     }
 }

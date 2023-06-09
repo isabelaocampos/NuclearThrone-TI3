@@ -5,6 +5,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 
+import javafx.scene.paint.Color;
+
+
 import java.util.ArrayList;
 public class Player {
 
@@ -31,6 +34,10 @@ public class Player {
     private boolean rightPressed;
     private boolean isAttacking;
 
+    //
+    private boolean isFacingRight = true;
+    private boolean isMoving;
+
     public Player(Canvas canvas){
         this.state = 0;
         this.canvas = canvas;
@@ -38,13 +45,9 @@ public class Player {
 
         this.position = new Vector(100, 100);
 
-        this.posX = 100;
-        this.posY = 100;
-
         idleImages = new ArrayList<>();
         runImages = new ArrayList<>();
         attackImages = new ArrayList<>();
-
 
         for(int i = 1; i <= 3; i++){
             Image image = MainApplication.getImage("animations/hero/idle/idle_0"+i+".png");
@@ -63,21 +66,35 @@ public class Player {
 
     }
 
-    public void paint(){
+
+    public void paint() {
         onMove();
-        if (state == 0){
-            graphicsContext.drawImage(idleImages.get(frame%3), position.getX(), position.getY());
-            frame++;
+
+        if (state == 0) {
+            double width = isFacingRight ? 50 : -50;
+            double xOffset = isFacingRight ? -25 : 25;
+
+            graphicsContext.drawImage(idleImages.get(frame % 3), position.getX() + xOffset, position.getY() - 25, width, 50);
+        } else if (state == 1) {
+            double width = isFacingRight ? 60 : -60;
+            double xOffset = isFacingRight ? -30 : 30;
+
+            graphicsContext.drawImage(runImages.get(frame % 5), position.getX() + xOffset, position.getY() - 25, width, 50);
+        } else if (state == 2) {
+            double width = isFacingRight ? 70 : -70;
+            double xOffset = isFacingRight ? -35 : 35;
+
+            graphicsContext.drawImage(attackImages.get(frame % 4), position.getX() + xOffset, position.getY() - 25, width, 50);
         }
-        else if(state == 1) {
-            graphicsContext.drawImage(runImages.get(frame%5), position.getX(), position.getY());
-            frame++;
-        }
-        else if (state == 2) {
-            graphicsContext.drawImage(attackImages.get(frame%4), position.getX(), position.getY());
-            frame++;
-        }
+
+        frame++;
     }
+
+
+
+
+
+
 
     public void onKeyPressed(KeyEvent event){
         switch (event.getCode()){
@@ -136,4 +153,13 @@ public class Player {
     public Vector getPosition() {
         return position;
     }
+
+    public boolean isFacingRight() {
+        return isFacingRight;
+    }
+
+    public void setFacingRight(boolean facingRight) {
+        isFacingRight = facingRight;
+    }
+
 }
