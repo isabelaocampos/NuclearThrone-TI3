@@ -1,4 +1,4 @@
-package com.example.nuclearthrone.model.entity.level;
+package com.example.nuclearthrone.model.level;
 
 import java.util.ArrayList;
 
@@ -7,8 +7,6 @@ import com.example.nuclearthrone.MainApplication;
 import com.example.nuclearthrone.model.entity.important.Entity;
 //import com.example.nuclearthrone.model.entity.MovableEntity;
 import com.example.nuclearthrone.model.entity.armery.Bullet;
-import com.example.nuclearthrone.model.entity.armery.EnemyBullet;
-import com.example.nuclearthrone.model.entity.enemy.Enemy;
 //import com.example.nuclearthrone.model.entity.enviroment.Decoration;
 import com.example.nuclearthrone.model.entity.enviroment.Wall;
 //import com.example.nuclearthrone.model.entity.item.Item;
