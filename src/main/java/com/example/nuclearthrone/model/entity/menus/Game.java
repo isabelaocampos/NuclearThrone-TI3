@@ -1,6 +1,9 @@
 package com.example.nuclearthrone.model.entity.menus;
 
+import com.example.nuclearthrone.model.KeyboardControl;
+import com.example.nuclearthrone.model.entity.enviroment.Background;
 import com.example.nuclearthrone.model.entity.enviroment.Wall;
+import com.example.nuclearthrone.model.entity.important.Entity;
 import com.example.nuclearthrone.model.entity.important.Player;
 import com.example.nuclearthrone.model.level.Level;
 import com.example.nuclearthrone.screens.ScreenA;
@@ -64,7 +67,7 @@ public class Game {
         Player.resetAvatar();
         Level.resetLevels();
     }
-/*//
+
     @FXML
     public void initialize() {
         bindHUD();
@@ -88,7 +91,7 @@ public class Game {
         });
         gameThread.start();
     }
-*/
+
     GraphicsContext graphicsContext;
 
     public void bindHUD(){
@@ -100,30 +103,27 @@ public class Game {
         Player.hand = weaponImage;
         Player.reloadBar = reloadBar;
     }
-/*//
+
     public void initKeyBoard() {
         canvas.setFocusTraversable(true);
-        canvas.setOnKeyPressed(Player:onKeyPressed);
-        canvas.setOnKeyReleased(Player:onKeyReleased);
+        canvas.setOnKeyPressed(KeyboardControl:onKeyPressed);
+        canvas.setOnKeyReleased(KeyboardControl:onKeyReleased);
         canvas.setOnMousePressed(KeyboardControl::onMousePressed);
     }
-*/
+
     public void initBounds() {
         graphicsContext = canvas.getGraphicsContext2D();
         Rectangle2D rect = Screen.getPrimary().getBounds();
         canvas.setWidth(rect.getWidth());
         canvas.setHeight(rect.getHeight());
     }
-/*//
+
     public void paintEntities(Level current) {
         for (Wall wall : current.walls) {
             wall.draw(graphicsContext);
         }
-        for (Decoration decoration : current.decorations) {
+        for (Background decoration : current.background) {
             decoration.draw(graphicsContext);
-        }
-        for (int i = 0; i < current.items.size(); i++) {
-            current.items.get(i).draw(graphicsContext);
         }
         bulletsInteraction(current);
         Player.getInstanceOf().draw(graphicsContext);
@@ -139,7 +139,7 @@ public class Game {
             currentB.draw(graphicsContext);
             if (currentB instanceof EnemyBullet) {
                 if (currentB.intersects(Avatar.getInstance())) {
-                    Avatar.getInstance().takeDamage(currentB);
+                    Player.getInstance().takeDamage(currentB);
                     currentLevel.bullets.remove(i);
                     i--;
                     continue;

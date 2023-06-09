@@ -3,7 +3,13 @@ package com.example.nuclearthrone.model.entity.important;
 import java.util.ArrayList;
 
 import com.example.nuclearthrone.control.MainController;
+import com.example.nuclearthrone.model.entity.armery.Bullet;
+import com.example.nuclearthrone.model.entity.armery.EnemyBullet;
+import com.example.nuclearthrone.model.entity.enemy.Enemy;
+import com.example.nuclearthrone.model.entity.enviroment.Wall;
 import com.example.nuclearthrone.model.entity.util.Direction;
+import com.example.nuclearthrone.model.entity.util.Vector;
+import com.example.nuclearthrone.model.level.Level;
 import javafx.collections.ObservableList;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -49,7 +55,7 @@ public abstract class Entity extends Rectangle {
             gc.fillRect(getX(), getY(), getWidth(), getHeight());
         }
     }
- /*//
+
     public boolean intersects(Entity other) {
         if (!tangible || !other.tangible) {
             return false;
@@ -63,7 +69,6 @@ public abstract class Entity extends Rectangle {
         return this.intersects(other.getBoundsInLocal());
     }
 
-    @SuppressWarnings("unchecked")
     public ArrayList<Entity> intersectsAny(ObservableList<? extends Entity>... list) {
         ArrayList<Entity> intersected = new ArrayList<>();
         for (ObservableList<? extends Entity> entities : list) {
@@ -90,7 +95,6 @@ public abstract class Entity extends Rectangle {
         return true;
     }
 
-  */
 
     public static boolean isOutOfScreen(Entity e) {
         return e.getX() + e.getWidth() + 10 > MainController.getWidth() || e.getX() <= 0

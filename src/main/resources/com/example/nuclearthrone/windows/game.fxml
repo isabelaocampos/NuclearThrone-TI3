@@ -17,17 +17,17 @@
                     <children>
                         <ImageView fx:id="heartOne" fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="picture">
                             <image>
-                                <Image url="@full-heart.png" />
+                                <Image url="@../Background/full-heart.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="heartTwo" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="picture">
                             <image>
-                                <Image url="@full-heart.png" />
+                                <Image url="@../Background/full-heart.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="heartThree" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="picture">
                             <image>
-                                <Image url="@full-heart.png" />
+                                <Image url="@../Background/full-heart.png" />
                             </image>
                         </ImageView>
                     </children>
@@ -60,17 +60,17 @@
                     <children>
                         <ImageView fitHeight="200.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@gameOver.png" />
+                                <Image url="@../Background/gameOver.png" />
                             </image>
                         </ImageView>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0" spacing="30.0">
                             <children>
                                 <ImageView fx:id="playAgainBtn" fitHeight="121.0" fitWidth="123.0" onMouseClicked="#replay" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@replay.png" />
+                                        <Image url="@../Background/replay.png" />
                                     </image>
                                 </ImageView>
-                               <Button fx:id="menuBtn" mnemonicParsing="false" onAction="#goToMenu" prefHeight="80.0" prefWidth="200.0" stylesheets="@menu.css" text="MENU">
+                               <Button fx:id="menuBtn" mnemonicParsing="false" onAction="#goToMenu" prefHeight="80.0" prefWidth="200.0" stylesheets="@../Background/menu.css" text="MENU">
                                     <HBox.margin>
                                         <Insets />
                                     </HBox.margin>
