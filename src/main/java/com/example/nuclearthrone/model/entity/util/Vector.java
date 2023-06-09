@@ -1,4 +1,4 @@
-package com.example.nuclearthrone.model;
+package com.example.nuclearthrone.model.entity.util;
 
 public class Vector {
 

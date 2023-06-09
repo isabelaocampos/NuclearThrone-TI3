@@ -1,11 +1,10 @@
-package com.example.nuclearthrone.model;
+package com.example.nuclearthrone.model.entity.important;
 import com.example.nuclearthrone.MainApplication;
+import com.example.nuclearthrone.model.entity.util.Vector;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-
-import javafx.scene.paint.Color;
 
 
 import java.util.ArrayList;

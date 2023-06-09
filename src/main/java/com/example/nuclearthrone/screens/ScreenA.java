@@ -1,17 +1,15 @@
 package com.example.nuclearthrone.screens;
 
-import com.example.nuclearthrone.model.Player;
-import com.example.nuclearthrone.model.Enemy;
-import com.example.nuclearthrone.model.Bullet;
-import com.example.nuclearthrone.model.Vector;
-import javafx.scene.Cursor;
+import com.example.nuclearthrone.model.entity.important.Player;
+import com.example.nuclearthrone.model.entity.enemy.Enemy;
+import com.example.nuclearthrone.model.entity.armery.Bullet;
+import com.example.nuclearthrone.model.entity.util.Vector;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.lang.Math;
-import javafx.scene.Scene;
 
 public class ScreenA extends BaseScreen{
 

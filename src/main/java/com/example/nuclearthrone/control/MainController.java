@@ -1,5 +1,5 @@
 package com.example.nuclearthrone.control;
-import com.example.nuclearthrone.model.Level;
+import com.example.nuclearthrone.model.entity.level.Level;
 import com.example.nuclearthrone.model.Player;
 import com.example.nuclearthrone.screens.BaseScreen;
 import com.example.nuclearthrone.screens.ScreenA;
@@ -102,5 +102,17 @@ public class MainController implements Initializable {
         //levels.add(new Level(44,30,canvas,"\\", players, 3));
         initEvents();
 
+    }
+
+    public static double getWidth() {
+        return 1280;
+    }
+
+    public static double getHeight() {
+        return 720;
+    }
+
+    public static int msRate() {
+        return 16;
     }
 }
