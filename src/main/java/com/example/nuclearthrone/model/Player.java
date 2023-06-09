@@ -1,8 +1,11 @@
 package com.example.nuclearthrone.model;
 import com.example.nuclearthrone.MainApplication;
+import javafx.animation.Animation;
+import javafx.animation.Timeline;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
 import javafx.scene.paint.Color;
@@ -10,6 +13,14 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 public class Player {
+
+    //** */
+    public static final int HEALTH = 100;
+    private static Player instance;
+
+    private static Timeline animationPlayer;
+    //** */
+
 
     // Elementos graficos
     private Canvas canvas;
@@ -37,6 +48,10 @@ public class Player {
     //
     private boolean isFacingRight = true;
     private boolean isMoving;
+
+    public static ImageView[] hearts;
+
+
 
     public Player(Canvas canvas){
         this.state = 0;
@@ -89,11 +104,6 @@ public class Player {
 
         frame++;
     }
-
-
-
-
-
 
 
     public void onKeyPressed(KeyEvent event){
@@ -160,6 +170,32 @@ public class Player {
 
     public void setFacingRight(boolean facingRight) {
         isFacingRight = facingRight;
+    }
+/*
+    private static void updateLifeBar() {
+        int nHearts = hearts.length;
+        for (int i = 0; i < nHearts; i++) {
+            if((i+1)*30 < instance.health){
+                hearts[i].setImage(new Image(MainMenu.getFile("windows/full-heart.png").getPath()));
+            }else{
+                hearts[i].setImage(new Image(MainMenu.getFile("windows/empty-heart.png").getPath()));
+            }
+        }
+    }
+
+
+    public static void resetAvatar(){
+        instance.stopAnimation();
+        instance = null;
+    }*/
+
+
+    public void stopAnimation() {
+        animationPlayer.stop();
+    }
+    public void startAnimation() {
+        animationPlayer.setCycleCount(Animation.INDEFINITE);
+        animationPlayer.play();
     }
 
 }
