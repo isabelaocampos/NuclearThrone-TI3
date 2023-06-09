@@ -1,10 +1,7 @@
 package com.example.nuclearthrone.control;
-<<<<<<< HEAD
-//*import com.example.nuclearthrone.model.entity.level.Level;
-=======
 
 import com.example.nuclearthrone.model.level.Level;
->>>>>>> 91d21398dfaf5ca6faf5396f098731f46d92ffe8
+
 import com.example.nuclearthrone.model.entity.important.Player;
 import com.example.nuclearthrone.screens.BaseScreen;
 import com.example.nuclearthrone.screens.ScreenA;
