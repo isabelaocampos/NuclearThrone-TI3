@@ -78,28 +78,10 @@ public class MainApplication extends Application {
     }
 
     public static void showScreen() {
-        Stage loadingStage = new Stage();
 
-        loadingStage.initModality(Modality.APPLICATION_MODAL);
-        loadingStage.initStyle(StageStyle.UNDECORATED);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("BLACK"));
-
-        try {
-            AnchorPane root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            loadingStage.setScene(scene);
-            loadingStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
-            loadingStage.close();
             initGame();
-        }));
-        timeline.setCycleCount(1);
-        timeline.play();
+
 
     }
 
@@ -124,8 +106,7 @@ public class MainApplication extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(getView("game"));
             Scene scene = new Scene(fxmlLoader.load(), getWidth(), getHeight());
 
-            ImageCursor cursor = new ImageCursor(new Image(getFile("cursor.png").getPath()),30,30);
-            scene.setCursor(cursor);
+
 
             if(gameStage == null){
                 gameStage = new Stage();
