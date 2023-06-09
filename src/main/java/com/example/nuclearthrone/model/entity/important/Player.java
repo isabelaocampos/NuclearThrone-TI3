@@ -7,6 +7,7 @@ import javafx.animation.Timeline;
 import com.example.nuclearthrone.model.entity.util.Vector;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -20,6 +21,7 @@ public class Player {
     private static Player instance;
 
     private static Timeline animationPlayer;
+    public boolean isAlive;
     //** */
 
 
@@ -52,6 +54,23 @@ public class Player {
 
     public static ImageView[] hearts;
 
+    public static ImageView hand;
+    public static ProgressBar reloadBar;
+
+    public static final double WIDTH = 50;
+    public static final double HEIGHT = 50;
+    public static Player getInstance(){
+        if(instance== null){
+            instance = new Player(200,70,WIDTH,HEIGHT);
+            
+        }
+        return instance;
+    }
+    
+    public Player(double x, double y, double width, double height){
+        super();
+        boolean isAlive = true;
+    }
 
 
     public Player(Canvas canvas){
@@ -184,13 +203,12 @@ public class Player {
         }
     }
 
-
+*/
     public static void resetAvatar(){
         instance.stopAnimation();
         instance = null;
-    }*/
-
-
+    }
+    
     public void stopAnimation() {
         animationPlayer.stop();
     }
