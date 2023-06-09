@@ -54,7 +54,6 @@ public class Player {
 
     //
     private boolean isFacingRight = true;
-    private boolean isMoving;
 
     public static ImageView[] hearts;
 
@@ -82,7 +81,6 @@ public class Player {
         this.canvas = canvas;
         this.graphicsContext = canvas.getGraphicsContext2D();
         this.isAlive = true;
-
 
         this.position = new Vector(100, 100);
 
@@ -216,6 +214,7 @@ public class Player {
     }
 
 
+
     public static void resetAvatar() {
         instance.stopAnimation();
         instance = null;
@@ -231,12 +230,13 @@ public class Player {
 
     }
 
-        public void remove(){
-            setAlive(false);
-            state = 3;  // Establecer el estado en 3 para mostrar la animación de muerte
-            frame = 0;  // Reiniciar el contador de frames para la animación de muerte
-            //aaaaa
-        }
+    public void remove(){
+        setAlive(false);
+        state = 3;  // Establecer el estado en 3 para mostrar la animación de muerte
+        frame = 0;  // Reiniciar el contador de frames para la animación de muerte
+        stopAnimation();
+        //aaaaa
+    }
 
 
 }
