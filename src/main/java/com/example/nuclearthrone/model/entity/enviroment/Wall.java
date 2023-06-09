@@ -1,15 +1,8 @@
 package com.example.nuclearthrone.model.entity.enviroment;
 
 import com.example.nuclearthrone.MainApplication;
-import com.example.nuclearthrone.model.entity.armery.EnemyBullet;
 import com.example.nuclearthrone.model.entity.important.Entity;
-import com.example.nuclearthrone.model.entity.level.Level;
 import javafx.scene.image.Image;
-
-import java.util.Objects;
-
-import static com.example.nuclearthrone.MainApplication.getHeight;
-import static com.example.nuclearthrone.MainApplication.getWidth;
 
 public class Wall extends Entity {
 
