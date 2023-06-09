@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'JetBrains Mono ExtraBold';
+}
+
+.button {
+    -fx-background-color: hotpink;
+    -fx-text-fill: Black;
+    -fx-font-family: 'JetBrains Mono ExtraBold', monospace;
+    -fx-font-size: 28px;
+    -fx-background-radius: 30;
+}

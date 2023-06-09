@@ -10,8 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -50,11 +49,13 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         stage.setTitle("Main Menu");
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getView("main-menu"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getView("hello-view"));
         AnchorPane root = fxmlLoader.load();
 
-        Rectangle background = new Rectangle(800, 600);
-        background.setFill(Color.BLUE);
+        Image imageBackground = new Image(getFile("maps/mainMap").getPath());
+        BackgroundImage fondo = new BackgroundImage(imageBackground, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+
+        root.setBackground(new ba(imageBackground));
 
         // Buttons references
         playButton = (Button) fxmlLoader.getNamespace().get("playButton");
