@@ -27,9 +27,15 @@ public class Enemy extends Thread{
 
     private int damage;
 
+    private boolean movingRight;
+
     private ArrayList<Image> idleImages;
 
     private ArrayList<Image> attackImages;
+
+    private ArrayList<Image> lookleftImages;
+
+    private ArrayList<Image> deathImages;
 
     public Enemy(Canvas canvas, Vector position, Vector direction){
         this.state = 0;
@@ -41,19 +47,32 @@ public class Enemy extends Thread{
         this.direction = direction;
         this.isAlive = true;
         this.isAttacking = false;
+        this.movingRight = true;
 
         idleImages = new ArrayList<>();
         attackImages = new ArrayList<>();
+        lookleftImages = new ArrayList<>();
+        deathImages = new ArrayList<>();
 
-        for(int i = 0; i < 2; i++){
-            //Image image = new Image(getClass().getResourceAsStream("/Robot Warfare Asset Pack 22-11-24/0.avispon/avispa-"+i+".png"));
-            Image image = new Image(getClass().getResourceAsStream("/animations/Enemies/idle/wasp-"+i+".png"));
-            idleImages.add(image);
+        for(int i = 0; i <= 3; i++){
+           //Image image = new Image(getClass().getResourceAsStream("/Robot Warfare Asset Pack 22-11-24/0.avispon/avispa-"+i+".png"));
+           Image image = new Image(getClass().getResourceAsStream("/animations/Enemies/idle/enemy-0"+i+".png"));
+           idleImages.add(image);
         }
 
-        for(int i = 0; i < 2; i++){
-            Image image = new Image(getClass().getResourceAsStream("/animations/Enemies/attack/wasp-"+i+".png"));
+        for(int i = 0; i <= 15; i++){
+            Image image = new Image(getClass().getResourceAsStream("/animations/Enemies/attack/enemy-"+i+".png"));
             attackImages.add(image);
+        }
+
+        for(int i = 0; i < 1; i++){
+            Image image = new Image(getClass().getResourceAsStream("/animations/Enemies/left/enemy-"+i+".png"));
+            lookleftImages.add(image);
+        }
+
+        for(int i = 0; i <= 3; i++){
+            Image image = new Image(getClass().getResourceAsStream("/animations/Enemies/death/enemy-"+i+".png"));
+            deathImages.add(image);
         }
     }
 
@@ -64,6 +83,8 @@ public class Enemy extends Thread{
     public boolean getAttacking (){
         return isAttacking;
     }
+
+    public void setState (int state){ this.state = state; }
 
     public void setAlive(boolean alive) {
         isAlive = alive;
@@ -78,19 +99,60 @@ public class Enemy extends Thread{
     }
 
     public void paint(){
+        //Idle
         if (state == 0){
-            graphicsContext.drawImage(idleImages.get(frame%2), position.getX(), position.getY(), 40, 40);
+            graphicsContext.drawImage(idleImages.get(frame%4), position.getX(), position.getY(), 40, 40);
             frame++;
             position.setX(position.getX() + direction.getX());
             position.setY(position.getY() + direction.getY());
         }
+        //Attack
         if (state == 1){
-            graphicsContext.drawImage(attackImages.get(frame%2), position.getX(), position.getY(), 40, 40);
+            graphicsContext.drawImage(attackImages.get(frame%16), position.getX(), position.getY(), 40, 40);
+            frame++;
+            position.setX(position.getX() + direction.getX());
+            position.setY(position.getY() + direction.getY());
+        }
+        //Look left
+        if (state == 2){
+            graphicsContext.drawImage(lookleftImages.get(frame%1), position.getX(), position.getY(), 40, 40);
+            frame++;
+            position.setX(position.getX() + direction.getX());
+            position.setY(position.getY() + direction.getY());
+        }
+        //Death
+        if (state == 3){
+            graphicsContext.drawImage(deathImages.get(frame%4), position.getX(), position.getY(), 40, 40);
             frame++;
             position.setX(position.getX() + direction.getX());
             position.setY(position.getY() + direction.getY());
         }
     }
+
+
+    /*public void moveRoutine(double key) {
+        double limR = this.canvas.getWidth() - 50;
+        if (position.getX() < limR && movingRight) {
+            position.setX(position.getX() + key);
+        } else if(position.getX() == limR || position.getX() > limR) {
+            movingRight = false;
+            lookLeft(movingRight);
+            position.setX(position.getX()-key);
+        } else {
+            resetPosition();
+        }
+    }
+
+    private void resetPosition() {
+        position.setX(0);
+        movingRight = true;
+    }
+
+    public void lookLeft(boolean movingRight){
+        if (!movingRight){
+            state = 2;
+        }
+    }*/
 
     public void followPlayer(Vector positionPlayer){
         double distance = Math.sqrt(
@@ -99,12 +161,13 @@ public class Enemy extends Thread{
 
         if(distance <= 200){
             state = 1;
+            //calcular diferencia
             double diffX = (positionPlayer.getX()-position.getX());
             double diffY = (positionPlayer.getY()-position.getY());
 
             Vector diff = new Vector(diffX, diffY);
             diff.normalize();;
-            diff.setSpeed(5);
+            diff.setSpeed(3);
             direction = diff;
         }
         if(distance > 200){
@@ -116,9 +179,9 @@ public class Enemy extends Thread{
     public void attackPlayer(Vector positionPlayer){
         double distance = Math.sqrt(
                 Math.pow(position.getX()-positionPlayer.getX(), 2)
-                        + Math.pow(position.getY() - positionPlayer.getY(), 2));
+                + Math.pow(position.getY() - positionPlayer.getY(), 2));
 
-        if (distance <= 200){
+        if(distance <= 200){
             isAttacking = true;
         }
         else{
@@ -127,5 +190,6 @@ public class Enemy extends Thread{
     }
 
     @Override
-    public void run(){}
+    public void run(){
+    }
 }
