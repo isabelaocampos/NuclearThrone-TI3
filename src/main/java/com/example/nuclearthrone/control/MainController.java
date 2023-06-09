@@ -1,5 +1,5 @@
 package com.example.nuclearthrone.control;
-import com.example.nuclearthrone.model.entity.level.Level;
+//*import com.example.nuclearthrone.model.entity.level.Level;
 import com.example.nuclearthrone.model.entity.important.Player;
 import com.example.nuclearthrone.screens.BaseScreen;
 import com.example.nuclearthrone.screens.ScreenA;
@@ -21,7 +21,7 @@ public class MainController implements Initializable {
     public static final String Main_Resources_Audio_Path = Main_Resources_Path + "";
     public static final String Collision_Pack = Main_Resources_Path + "";
     public static int level = 0;
-    private ArrayList<Level> levels;
+    //*private ArrayList<Level> levels;
     private Player players;
     @FXML
     private Canvas canvas;
@@ -93,7 +93,7 @@ public class MainController implements Initializable {
         graphics = canvas.getGraphicsContext2D();
         reset = false;
         isRunning = true;
-        levels = new ArrayList<>();
+        //levels = new ArrayList<>();
         //players = new Player();
         canvas.setFocusTraversable(true);
         //printInCanvas();
