@@ -118,7 +118,7 @@ public class Enemy extends Thread{
                 Math.pow(position.getX()-positionPlayer.getX(), 2)
                         + Math.pow(position.getY() - positionPlayer.getY(), 2));
 
-        if(distance <= 200){
+        if (distance <= 200){
             isAttacking = true;
         }
         else{

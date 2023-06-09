@@ -10,8 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -29,61 +28,40 @@ public class MainApplication extends Application {
     private Button playButton;
 
     @FXML
-    private Button manualButton;
-
-    @FXML
-    private Button creditsButton;
-
-    @FXML
     private Button quitButton;
 
     public static void main(String[] args) {
         launch();
     }
 
-    private Canvas canvas;
-
-
-
 
     @Override
     public void start(Stage stage) throws IOException {
         stage.setTitle("Main Menu");
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getView("main-menu"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getView("hello-view"));
         AnchorPane root = fxmlLoader.load();
 
-        Rectangle background = new Rectangle(800, 600);
-        background.setFill(Color.BLUE);
 
         // Buttons references
         playButton = (Button) fxmlLoader.getNamespace().get("playButton");
-        manualButton = (Button) fxmlLoader.getNamespace().get("manualButton");
-        creditsButton = (Button) fxmlLoader.getNamespace().get("creditsButton");
         quitButton = (Button) fxmlLoader.getNamespace().get("quitButton");
 
         playButton.setOnAction(e -> {
             showScreen();
         });
 
-        manualButton.setOnAction( e -> {
-            openWindow("manual");
-        });
-
-        creditsButton.setOnAction(e -> {
-            openWindow("credits");
-        });
 
         quitButton.setOnAction(e -> {
             stage.close();
         });
 
-        VBox vBox = new VBox(20, playButton, manualButton, creditsButton, quitButton);
+        VBox vBox = new VBox(20, playButton, quitButton);
         vBox.setAlignment(Pos.CENTER);
         vBox.setTranslateX(260);
         vBox.setTranslateY(200);
 
-        root.getChildren().addAll(background, vBox);
+        root.getChildren().addAll(vBox);
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

@@ -15,6 +15,7 @@ public class ScreenA extends BaseScreen{
 
     private Player player;
 
+    private int playerLives = 3;
     private ArrayList<Enemy> enemies;
 
     private ArrayList<Bullet> bullets;
@@ -103,6 +104,31 @@ public class ScreenA extends BaseScreen{
             }
         }
 
+        // Delete player
+        for (int i = 0; i < enemies.size(); i++) {
+            for (int j = 0; j < bulletsEnemy.size(); j++) {
+
+                Enemy actualEnemy = enemies.get(i);
+                Bullet actualBullet = bulletsEnemy.get(j);
+
+                double distance = Math.sqrt(
+                        Math.pow(player.getPosition().getX() - actualBullet.getPositionX(), 2) +
+                                Math.pow(player.getPosition().getY() - actualBullet.getPositionY(), 2));
+
+                if (distance <= 10) {
+                    playerLives--;
+                    bulletsEnemy.remove(j);
+
+                    if (playerLives <= 0) {
+                        player.remove();
+
+                        return;
+                    }
+                }
+            }
+        }
+
+
     }
 
     @Override
@@ -153,4 +179,5 @@ public class ScreenA extends BaseScreen{
                     diffE)));
         }
     }
+
 }
