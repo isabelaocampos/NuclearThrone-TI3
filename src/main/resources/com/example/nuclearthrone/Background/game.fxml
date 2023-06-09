@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.geometry.Insets?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.nuclearthrone.screens.ScreenA"
-            prefHeight="720.0" prefWidth="600.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.nuclearthrone.model.entity.menus.Game">
     <children>
         <Canvas fx:id="canvas" height="720.0" width="1280.0" />
         <Rectangle arcHeight="15.0" arcWidth="15.0" height="60.0" layoutX="14.0" layoutY="14.0" opacity="0.4" stroke="BLACK" strokeType="INSIDE" width="212.0" />
@@ -45,7 +37,7 @@
                 </HBox>
                 <VBox prefHeight="60.0" prefWidth="43.0" spacing="5.0">
                     <children>
-                        <ImageView fx:id="weaponImage" fitHeight="35.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" styleClass="picture">
+                        <ImageView fx:id="weaponImage" fitHeight="32.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" styleClass="picture">
                             <image>
                                 <Image url="@../weapons/pixelFist.png" />
                             </image>
