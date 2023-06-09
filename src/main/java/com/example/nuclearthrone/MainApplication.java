@@ -38,4 +38,12 @@ public class MainApplication extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+    public static double getWidth() {
+        return 1280;
+    }
+
+    public static double getHeight() {
+        return 720;
+    }
 }
