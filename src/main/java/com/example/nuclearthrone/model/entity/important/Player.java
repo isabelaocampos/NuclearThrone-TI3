@@ -1,12 +1,14 @@
 package com.example.nuclearthrone.model.entity.important;
 import com.example.nuclearthrone.MainApplication;
 
+import javafx.animation.Animation;
 import javafx.animation.Timeline;
 
 import com.example.nuclearthrone.model.entity.util.Vector;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -19,6 +21,7 @@ public class Player {
     public static final int HEALTH = 100;
     private static Player instance;
     private static Timeline animationPlayer;
+    public boolean isAlive;
     //** */
 
 
@@ -47,7 +50,6 @@ public class Player {
     private boolean rightPressed;
     private boolean isAttacking;
 
-    private boolean isAlive;
 
 
     //
@@ -56,6 +58,24 @@ public class Player {
 
     public static ImageView[] hearts;
 
+    public static ImageView hand;
+    public static ProgressBar reloadBar;
+
+    public static final double WIDTH = 50;
+    public static final double HEIGHT = 50;
+
+    public static Player getInstance() {
+        if (instance == null) {
+            instance = new Player(200, 70, WIDTH, HEIGHT);
+
+        }
+        return instance;
+    }
+
+    public Player(double x, double y, double width, double height) {
+        super();
+        boolean isAlive = true;
+    }
 
     public Player(Canvas canvas) {
         this.state = 0;
@@ -98,7 +118,7 @@ public class Player {
     public void paint() {
         onMove();
 
-        if(isAlive){
+        if (isAlive) {
 
             if (state == 0) {
                 double width = isFacingRight ? 50 : -50;
@@ -195,11 +215,29 @@ public class Player {
         isAlive = alive;
     }
 
-    public void remove() {
-        setAlive(false);
-        state = 3;  // Establecer el estado en 3 para mostrar la animación de muerte
-        frame = 0;  // Reiniciar el contador de frames para la animación de muerte
+
+    public static void resetAvatar() {
+        instance.stopAnimation();
+        instance = null;
     }
+
+    public void stopAnimation() {
+        animationPlayer.stop();
+    }
+
+    public void startAnimation() {
+        animationPlayer.setCycleCount(Animation.INDEFINITE);
+        animationPlayer.play();
+
+    }
+
+        public void remove(){
+            setAlive(false);
+            state = 3;  // Establecer el estado en 3 para mostrar la animación de muerte
+            frame = 0;  // Reiniciar el contador de frames para la animación de muerte
+            //aaaaa
+        }
 
 
 }
+

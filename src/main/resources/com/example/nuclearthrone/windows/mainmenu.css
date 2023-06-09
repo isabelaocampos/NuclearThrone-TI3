@@ -1,0 +1,4 @@
+.bodybg{
+    -fx-background-image: url("maps/mainMap.png");
+    -fx-background-size: 100% 100%;
+}
