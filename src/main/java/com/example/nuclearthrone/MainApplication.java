@@ -28,21 +28,11 @@ public class MainApplication extends Application {
     private Button playButton;
 
     @FXML
-    private Button manualButton;
-
-    @FXML
-    private Button creditsButton;
-
-    @FXML
     private Button quitButton;
 
     public static void main(String[] args) {
         launch();
     }
-
-    private Canvas canvas;
-
-
 
 
     @Override
@@ -52,39 +42,26 @@ public class MainApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getView("hello-view"));
         AnchorPane root = fxmlLoader.load();
 
-        Image imageBackground = new Image(getFile("maps/mainMap").getPath());
-        BackgroundImage fondo = new BackgroundImage(imageBackground, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-
-        root.setBackground(new ba(imageBackground));
 
         // Buttons references
         playButton = (Button) fxmlLoader.getNamespace().get("playButton");
-        manualButton = (Button) fxmlLoader.getNamespace().get("manualButton");
-        creditsButton = (Button) fxmlLoader.getNamespace().get("creditsButton");
         quitButton = (Button) fxmlLoader.getNamespace().get("quitButton");
 
         playButton.setOnAction(e -> {
             showScreen();
         });
 
-        manualButton.setOnAction( e -> {
-            openWindow("manual");
-        });
-
-        creditsButton.setOnAction(e -> {
-            openWindow("credits");
-        });
 
         quitButton.setOnAction(e -> {
             stage.close();
         });
 
-        VBox vBox = new VBox(20, playButton, manualButton, creditsButton, quitButton);
+        VBox vBox = new VBox(20, playButton, quitButton);
         vBox.setAlignment(Pos.CENTER);
         vBox.setTranslateX(260);
         vBox.setTranslateY(200);
 
-        root.getChildren().addAll(background, vBox);
+        root.getChildren().addAll(vBox);
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
