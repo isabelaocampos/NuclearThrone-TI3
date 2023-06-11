@@ -6,8 +6,10 @@ import com.example.nuclearthrone.MainApplication;
 //import com.example.nuclearthrone.model.entity.Avatar;
 import com.example.nuclearthrone.model.entity.Entity;
 //import com.example.nuclearthrone.model.entity.MovableEntity;
+import com.example.nuclearthrone.model.entity.MovableEntity;
 import com.example.nuclearthrone.model.entity.armery.Bullet;
 //import com.example.nuclearthrone.model.entity.enviroment.Decoration;
+import com.example.nuclearthrone.model.entity.enviroment.Background;
 import com.example.nuclearthrone.model.entity.enviroment.Wall;
 //import com.example.nuclearthrone.model.entity.item.Item;
 //import com.example.nuclearthrone.model.entity.item.Slingshot;
@@ -16,6 +18,7 @@ import com.example.nuclearthrone.model.entity.enviroment.Wall;
 //import com.example.nuclearthrone.model.menus.Soundtrack;
 //import com.example.nuclearthrone.model.util.Direction;
 
+import com.example.nuclearthrone.model.entity.item.Item;
 import com.example.nuclearthrone.model.entity.util.Direction;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,9 +32,9 @@ public class Level {
 
     public ObservableList<Bullet> bullets = FXCollections.observableArrayList();
     public ObservableList<Wall> walls = FXCollections.observableArrayList();
-    //public ObservableList<Decoration> decorations = FXCollections.observableArrayList();
-    //public ObservableList<MovableEntity> entities = FXCollections.observableArrayList();
-    //public ObservableList<Item> items = FXCollections.observableArrayList();
+    public ObservableList<Background> backgrounds = FXCollections.observableArrayList();
+    public ObservableList<MovableEntity> entities = FXCollections.observableArrayList();
+    public ObservableList<Item> items = FXCollections.observableArrayList();
 
     public Image background;
 

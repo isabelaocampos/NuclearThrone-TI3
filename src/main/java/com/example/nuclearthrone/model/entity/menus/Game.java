@@ -1,6 +1,7 @@
 package com.example.nuclearthrone.model.entity.menus;
 
 import com.example.nuclearthrone.model.KeyboardControl;
+import com.example.nuclearthrone.model.entity.MovableEntity;
 import com.example.nuclearthrone.model.entity.armery.Bullet;
 import com.example.nuclearthrone.model.entity.armery.EnemyBullet;
 import com.example.nuclearthrone.model.entity.enviroment.Background;
@@ -56,6 +57,7 @@ public class Game {
 
     @FXML
     void goToMenu(ActionEvent event) {
+
         canvas.getScene().getWindow().hide();
     }
 
@@ -123,11 +125,11 @@ public class Game {
         for (Wall wall : current.walls) {
             wall.draw(graphicsContext);
         }
-        for (Background decoration : current.background) {
+        for (Background decoration : current.backgrounds) {
             decoration.draw(graphicsContext);
         }
         bulletsInteraction(current);
-        Player.getInstanceOf().draw(graphicsContext);
+        Player.getInstance().draw(graphicsContext);
         for (MovableEntity entity : current.entities) {
             entity.draw(graphicsContext);
         }

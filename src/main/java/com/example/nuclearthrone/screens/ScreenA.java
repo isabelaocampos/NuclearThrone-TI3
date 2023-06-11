@@ -1,5 +1,6 @@
 package com.example.nuclearthrone.screens;
 
+import com.example.nuclearthrone.model.entity.Entity;
 import com.example.nuclearthrone.model.entity.Player;
 import com.example.nuclearthrone.model.entity.enemy.Enemy;
 import com.example.nuclearthrone.model.entity.armery.Bullet;
@@ -151,7 +152,8 @@ public class ScreenA extends BaseScreen{
         diff.setSpeed(7);
 
         bullets.add(
-                new Bullet(canvas, new Vector( player.getPosition().getX(), player.getPosition().getY()), diff)
+                new Bullet(canvas, new Vector(player.getPosition().getX(), player.getPosition().getY()), diff) {
+                }
         );
 
     }

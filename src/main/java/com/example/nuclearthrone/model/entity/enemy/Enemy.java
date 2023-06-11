@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
 import java.lang.Math;
 import java.util.ArrayList;
 
-public class Enemy extends Entity, Thread {
+public class Enemy extends Entity {
     private Canvas canvas;
 
     private GraphicsContext graphicsContext;
@@ -40,6 +40,7 @@ public class Enemy extends Entity, Thread {
     private ArrayList<Image> deathImages;
 
     public Enemy(Canvas canvas, Vector position, Vector direction){
+        super();
         this.state = 0;
         this.frame = 0;
         this.damage = 0;
@@ -191,9 +192,6 @@ public class Enemy extends Entity, Thread {
         }
     }
 
-    @Override
-    public void run(){
-    }
 
     @Override
     public void takeDamage(Entity other) {

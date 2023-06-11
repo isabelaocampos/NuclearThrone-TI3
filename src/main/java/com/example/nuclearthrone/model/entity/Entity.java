@@ -34,6 +34,10 @@ public abstract class Entity extends Rectangle {
         this.isAlive = true;
     }
 
+    public Entity() {
+
+    }
+
     public abstract void takeDamage(Entity other);
 
     public double getCenterX(){
