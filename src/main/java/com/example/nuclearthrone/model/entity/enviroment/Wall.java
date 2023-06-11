@@ -1,7 +1,7 @@
 package com.example.nuclearthrone.model.entity.enviroment;
 
 import com.example.nuclearthrone.MainApplication;
-import com.example.nuclearthrone.model.entity.important.Entity;
+import com.example.nuclearthrone.model.entity.Entity;
 import javafx.scene.image.Image;
 
 public class Wall extends Entity {

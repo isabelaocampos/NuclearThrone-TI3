@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.example.nuclearthrone.MainApplication;
 //import com.example.nuclearthrone.model.entity.Avatar;
-import com.example.nuclearthrone.model.entity.important.Entity;
+import com.example.nuclearthrone.model.entity.Entity;
 //import com.example.nuclearthrone.model.entity.MovableEntity;
 import com.example.nuclearthrone.model.entity.armery.Bullet;
 //import com.example.nuclearthrone.model.entity.enviroment.Decoration;

@@ -1,4 +1,4 @@
-package com.example.nuclearthrone.model.entity.important;
+package com.example.nuclearthrone.model.entity;
 import com.example.nuclearthrone.MainApplication;
 
 import javafx.animation.Animation;
@@ -15,7 +15,7 @@ import javafx.scene.input.KeyEvent;
 
 
 import java.util.ArrayList;
-public class Player {
+public class Player extends Entity{
 
     //** */
     public static final int HEALTH = 100;
@@ -239,6 +239,9 @@ public class Player {
     }
 
 
+    @Override
+    public void takeDamage(Entity other) {
 
+    }
 }
 

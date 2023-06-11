@@ -1,6 +1,6 @@
 package com.example.nuclearthrone.screens;
 
-import com.example.nuclearthrone.model.entity.important.Player;
+import com.example.nuclearthrone.model.entity.Player;
 import com.example.nuclearthrone.model.entity.enemy.Enemy;
 import com.example.nuclearthrone.model.entity.armery.Bullet;
 import com.example.nuclearthrone.model.entity.util.Vector;

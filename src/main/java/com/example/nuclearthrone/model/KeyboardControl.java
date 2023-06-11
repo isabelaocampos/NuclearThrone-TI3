@@ -1,7 +1,6 @@
 package com.example.nuclearthrone.model;
 
 
-import com.example.nuclearthrone.model.entity.important.Player;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.input.KeyEvent;
@@ -55,7 +54,7 @@ public class KeyboardControl {
 
     public static void onMousePressed(MouseEvent event) {
 
-        Player.getInstance().attack(event.getX(), event.getY());
+        //Player.getInstance().attack(event.getX(), event.getY());
     }
 }
 

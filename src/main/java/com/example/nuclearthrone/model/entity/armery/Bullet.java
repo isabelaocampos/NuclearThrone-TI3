@@ -1,12 +1,13 @@
 package com.example.nuclearthrone.model.entity.armery;
 
 import com.example.nuclearthrone.MainApplication;
+import com.example.nuclearthrone.model.entity.Entity;
 import com.example.nuclearthrone.model.entity.util.Vector;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class Bullet {
+public abstract class Bullet extends Entity {
 
     // Elementos graficos
     private Canvas canvas;
@@ -21,6 +22,7 @@ public class Bullet {
     private Image bulletImage;
 
     public Bullet(Canvas canvas, Vector position, Vector direction) {
+        super(entity.getX());
         this.canvas = canvas;
         this.graphicsContext = canvas.getGraphicsContext2D();
         this.position = position;

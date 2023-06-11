@@ -1,12 +1,13 @@
 package com.example.nuclearthrone.model.entity.menus;
 
 import com.example.nuclearthrone.model.KeyboardControl;
+import com.example.nuclearthrone.model.entity.armery.Bullet;
+import com.example.nuclearthrone.model.entity.armery.EnemyBullet;
 import com.example.nuclearthrone.model.entity.enviroment.Background;
 import com.example.nuclearthrone.model.entity.enviroment.Wall;
-import com.example.nuclearthrone.model.entity.important.Entity;
-import com.example.nuclearthrone.model.entity.important.Player;
+import com.example.nuclearthrone.model.entity.Entity;
+import com.example.nuclearthrone.model.entity.Player;
 import com.example.nuclearthrone.model.level.Level;
-import com.example.nuclearthrone.screens.ScreenA;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -106,8 +107,8 @@ public class Game {
 
     public void initKeyBoard() {
         canvas.setFocusTraversable(true);
-        canvas.setOnKeyPressed(KeyboardControl:onKeyPressed);
-        canvas.setOnKeyReleased(KeyboardControl:onKeyReleased);
+        canvas.setOnKeyPressed(KeyboardControl::onKeyPressed);
+        canvas.setOnKeyReleased(KeyboardControl::onKeyReleased);
         canvas.setOnMousePressed(KeyboardControl::onMousePressed);
     }
 
@@ -138,7 +139,7 @@ public class Game {
             Bullet currentB = currentLevel.bullets.get(i);
             currentB.draw(graphicsContext);
             if (currentB instanceof EnemyBullet) {
-                if (currentB.intersects(Avatar.getInstance())) {
+                if (currentB.intersects(Player.getInstance())) {
                     Player.getInstance().takeDamage(currentB);
                     currentLevel.bullets.remove(i);
                     i--;
@@ -159,7 +160,7 @@ public class Game {
             }
         }
     }
-*/
+
     public void checkAvatarAlive(){
         if(!Player.getInstance().isAlive) {
             gameOver.setVisible(true);

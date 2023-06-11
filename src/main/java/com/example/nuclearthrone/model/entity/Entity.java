@@ -1,4 +1,4 @@
-package com.example.nuclearthrone.model.entity.important;
+package com.example.nuclearthrone.model.entity;
 
 import java.util.ArrayList;
 

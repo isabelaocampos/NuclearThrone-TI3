@@ -1,25 +1,16 @@
 package com.example.nuclearthrone;
 
-import com.example.nuclearthrone.model.entity.important.Player;
+import com.example.nuclearthrone.model.entity.Player;
 import com.example.nuclearthrone.model.level.Level;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -103,7 +94,7 @@ public class MainApplication extends Application {
 
     public static void initGame() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getView("game"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getView("game-view"));
             Scene scene = new Scene(fxmlLoader.load(), getWidth(), getHeight());
 
 
