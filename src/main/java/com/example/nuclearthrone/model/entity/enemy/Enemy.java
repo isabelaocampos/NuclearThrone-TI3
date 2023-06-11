@@ -1,6 +1,8 @@
 package com.example.nuclearthrone.model.entity.enemy;
 
+import com.example.nuclearthrone.model.entity.Entity;
 import com.example.nuclearthrone.model.entity.util.Vector;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -8,7 +10,7 @@ import javafx.scene.image.Image;
 import java.lang.Math;
 import java.util.ArrayList;
 
-public class Enemy extends Thread{
+public class Enemy extends Entity, Thread {
     private Canvas canvas;
 
     private GraphicsContext graphicsContext;
@@ -191,5 +193,15 @@ public class Enemy extends Thread{
 
     @Override
     public void run(){
+    }
+
+    @Override
+    public void takeDamage(Entity other) {
+
+    }
+
+    @Override
+    public Node getStyleableNode() {
+        return super.getStyleableNode();
     }
 }

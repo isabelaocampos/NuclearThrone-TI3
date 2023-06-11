@@ -1,6 +1,6 @@
 package com.example.nuclearthrone.model.entity.armery;
 
-public class EnemyBullet  {
+public class EnemyBullet extends Bullet {
    //Tiene que decir que extiende bullet
     public static final double WIDTH = 20;
     public static final double HEIGHT = 20;
