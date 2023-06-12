@@ -36,7 +36,17 @@ public abstract class Bullet extends Entity implements IAnimate {
     int spriteStage;
     private Image bulletImage;
 
-    public Bullet(Vector position, Vector direction, double width, double height, int health, int level) {
+    public Bullet(Canvas canvas, Vector position, Vector direction) {
+        this.canvas = canvas;
+        this.graphicsContext = canvas.getGraphicsContext2D();
+        this.position = position;
+        this.direction =  direction;
+        this.size = 10;
+        this.speed = 10;
+        this.bulletImage = MainApplication.getImage("animations/hero/Objects/bulletSphereplanet.png");
+    }
+    public Bullet(Entity entity,double width,double height, int health, int level) {
+        super(entity.getX() + (entity.getWidth() / 2), entity.getY() + (entity.getHeight() / 2), width, height, health,true);
         this.canvas = canvas;
         this.graphicsContext = canvas.getGraphicsContext2D();
         this.position = position;
