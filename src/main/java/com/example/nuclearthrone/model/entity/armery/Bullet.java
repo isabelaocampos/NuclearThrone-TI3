@@ -18,12 +18,20 @@ public abstract class Bullet extends Entity implements IAnimate {
     private GraphicsContext graphicsContext;
 
     public static final int DAMAGE = 20;
+
     // referencias espaciales
-    private Vector position;
-    private Vector direction;
-    private int size;
-    private int speed;
+    double speed;
+    Vector position;
+
+    Image[] animation;
+
+
+    double initialX;
+
+    double initialY;
     boolean alive;
+    Vector direction;
+    private int size;
     Timeline animationPlayer;
     int spriteStage;
     private Image bulletImage;
@@ -69,5 +77,11 @@ public abstract class Bullet extends Entity implements IAnimate {
 
     public void setPositionY(double y) {
         this.position.setY(y);
+    }
+
+    public abstract void initAnimation();
+
+    public boolean uniqueAliveConstraint(){
+        return alive;
     }
 }
