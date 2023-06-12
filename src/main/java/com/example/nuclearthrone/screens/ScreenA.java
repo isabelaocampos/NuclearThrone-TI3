@@ -168,6 +168,8 @@ public class ScreenA extends BaseScreen{
     }
 
     //Enemies shoot to player
+
+    /*
     public void enemyShoot(boolean isAttacking, int index){
         if (isAttacking){
             double diffXE = player.getPosition().getX() - enemies.get(index).getPosition().getX();
@@ -181,5 +183,5 @@ public class ScreenA extends BaseScreen{
                     diffE)));
         }
     }
-
+*/
 }
