@@ -58,7 +58,7 @@ public class ScreenA extends BaseScreen{
             enemies.get(i).paint();
             enemies.get(i).followPlayer(player.getPosition());
             enemies.get(i).attackPlayer(player.getPosition());
-            enemyShoot(enemies.get(i).getAttacking(), i);
+            //enemyShoot(enemies.get(i).getAttacking(), i);
         }
 
         //Paint bullets of Player
@@ -145,18 +145,8 @@ public class ScreenA extends BaseScreen{
     @Override
     public void onMousePressed(MouseEvent event) {
 
-        double diffX = event.getX() - player.getPosition().getX(); //destino - origen
-        double diffY = event.getY() - player.getPosition().getY();
-        Vector diff = new Vector(diffX, diffY);
-        diff.normalize();
-        diff.setSpeed(7);
-
-        bullets.add(
-                new Bullet(canvas, new Vector(player.getPosition().getX(), player.getPosition().getY()), diff) {
-                }
-        );
-
     }
+
 
     //Cambiar cursor por una imagen - MODIFICAR
     @Override
@@ -169,8 +159,8 @@ public class ScreenA extends BaseScreen{
 
     //Enemies shoot to player
 
-    /*
-    public void enemyShoot(boolean isAttacking, int index){
+
+ /*   public void enemyShoot(boolean isAttacking, int index){
         if (isAttacking){
             double diffXE = player.getPosition().getX() - enemies.get(index).getPosition().getX();
             double diffYE = player.getPosition().getY() - enemies.get(index).getPosition().getY();
@@ -182,6 +172,6 @@ public class ScreenA extends BaseScreen{
                     new Vector(enemies.get(index).getPosition().getX(), enemies.get(index).getPosition().getY()),
                     diffE)));
         }
-    }
-*/
+    }*/
+
 }

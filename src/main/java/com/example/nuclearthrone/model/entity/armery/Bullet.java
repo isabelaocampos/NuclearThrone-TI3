@@ -3,11 +3,18 @@ package com.example.nuclearthrone.model.entity.armery;
 import com.example.nuclearthrone.MainApplication;
 import com.example.nuclearthrone.model.entity.Entity;
 import com.example.nuclearthrone.model.entity.IAnimate;
+import com.example.nuclearthrone.model.entity.Player;
 import com.example.nuclearthrone.model.entity.util.Vector;
+import com.example.nuclearthrone.model.level.Level;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+
+import java.util.Objects;
+
+import static com.example.nuclearthrone.control.MainController.level;
 
 public abstract class Bullet extends Entity implements IAnimate {
 
@@ -83,5 +90,38 @@ public abstract class Bullet extends Entity implements IAnimate {
 
     public boolean uniqueAliveConstraint(){
         return alive;
+    }
+
+    public void shootTo(double x, double y, double delay) {
+        movement = new Vector(x - getX(), y - getY());
+        movement.normalize();
+
+        Thread t = new Thread(() -> {
+            try {
+                Thread.sleep((long) delay);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Platform.runLater(()->{
+                if(this instanceof PlayerBullet){
+                    Player.reloadBar.setProgress(1);
+                }
+            });
+
+            setVisible(true);
+            while (alive) {
+                setX(getX() + movement.x);
+                setY(getY() + movement.y);
+                alive = uniqueAliveConstraint();
+                alive = alive && !isOutOfScreen(this);
+                try {
+                    Thread.sleep(MainApplication.msRate());
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            Objects.requireNonNull(Level.getLevel(level)).bullets.remove(this);
+        });
+        t.start();
     }
 }
