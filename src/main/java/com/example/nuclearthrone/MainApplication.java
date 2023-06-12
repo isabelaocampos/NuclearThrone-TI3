@@ -2,6 +2,8 @@ package com.example.nuclearthrone;
 
 import com.example.nuclearthrone.model.entity.Player;
 import com.example.nuclearthrone.model.level.Level;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +12,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -69,10 +74,30 @@ public class MainApplication extends Application {
     }
 
     public static void showScreen() {
+        Stage loadingStage = new Stage();
+        loadingStage.initModality(Modality.APPLICATION_MODAL);
+        loadingStage.initStyle(StageStyle.UNDECORATED);
 
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("windows/loading.fxml"));
+        try{
+            AnchorPane root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            loadingStage.setScene(scene);
+            loadingStage.show();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event ->{
+            loadingStage.close();
             initGame();
+        }));
+        timeline.setCycleCount(1);
+        timeline.play();
+
 
     }
+
+    public final void show(){}
 
     public static void openWindow(String fxml) {
         try {
