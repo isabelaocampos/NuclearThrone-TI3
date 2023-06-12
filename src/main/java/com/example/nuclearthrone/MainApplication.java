@@ -1,5 +1,10 @@
 package com.example.nuclearthrone;
 
+import com.example.nuclearthrone.control.MainController;
+import com.example.nuclearthrone.model.entity.menus.*;
+
+
+
 import com.example.nuclearthrone.model.entity.Player;
 import com.example.nuclearthrone.model.level.Level;
 import javafx.animation.KeyFrame;
@@ -12,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -32,6 +38,7 @@ public class MainApplication extends Application {
     @FXML
     private Button quitButton;
 
+    static MainController controller;
     public static void main(String[] args) {
         launch();
     }
@@ -39,7 +46,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        stage.setTitle("Main Menu");
+        stage.setTitle("hello view");
 
         FXMLLoader fxmlLoader = new FXMLLoader(getView("hello-view"));
         AnchorPane root = fxmlLoader.load();
@@ -50,8 +57,9 @@ public class MainApplication extends Application {
         quitButton = (Button) fxmlLoader.getNamespace().get("quitButton");
 
         playButton.setOnAction(e -> {
-                showScreen();
+            showScreen();
         });
+
 
 
         quitButton.setOnAction(e -> {
@@ -72,8 +80,34 @@ public class MainApplication extends Application {
         });
 
     }
-
     public static void showScreen() {
+        Stage loadingStage = new Stage();
+        loadingStage.initModality(Modality.APPLICATION_MODAL);
+        loadingStage.initStyle(StageStyle.UNDECORATED);
+
+        Pane root = new Pane();
+
+        // Establecer fondo de color
+        BackgroundFill backgroundFill = new BackgroundFill(Color.WHITE, null, null);
+        Background background = new Background(backgroundFill);
+        root.setBackground(background);
+
+        Scene scene = new Scene(root);
+        loadingStage.setScene(scene);
+        loadingStage.show();
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+            loadingStage.close();
+            initGame();
+
+
+        }));
+        timeline.setCycleCount(1);
+        timeline.play();
+    }
+
+
+  /*  public static void showScreen() {
         Stage loadingStage = new Stage();
         loadingStage.initModality(Modality.APPLICATION_MODAL);
         loadingStage.initStyle(StageStyle.UNDECORATED);
@@ -96,6 +130,7 @@ public class MainApplication extends Application {
 
 
     }
+*/
 
     public final void show(){}
 

@@ -89,7 +89,7 @@ public class MainController implements Initializable {
         }
     }
 
-    private void start(){
+    public void start(){
         graphics = canvas.getGraphicsContext2D();
         reset = false;
         isRunning = true;
