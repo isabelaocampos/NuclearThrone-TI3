@@ -70,9 +70,7 @@ public class MainApplication extends Application {
 
     public static void showScreen() {
 
-
             initGame();
-
 
     }
 
