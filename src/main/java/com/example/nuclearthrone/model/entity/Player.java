@@ -234,7 +234,7 @@ public class Player extends Entity{
         setAlive(false);
         state = 3;  // Establecer el estado en 3 para mostrar la animación de muerte
         frame = 0;  // Reiniciar el contador de frames para la animación de muerte
-        stopAnimation();
+        instance.stopAnimation();
         //aaaaa
     }
 
